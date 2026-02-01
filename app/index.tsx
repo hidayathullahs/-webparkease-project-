@@ -51,39 +51,44 @@ export default function RoleSelectionScreen() {
             <Ionicons name="layers" size={36} color="#00B894" />
           </View>
           <Text className="text-4xl font-black text-dark-900 tracking-tight">ParkEase</Text>
-          <Text className="text-gray-500 mt-2 text-base font-medium uppercase tracking-widest">Select Workspace</Text>
+          <Text className="text-teal-600 mt-1 text-lg font-bold tracking-wide">Smart Parking Solution</Text>
+          <Text className="text-gray-400 mt-4 text-center max-w-md leading-6">
+            Find the perfect spot, manage your parking assets, or oversee the entire operation—all in one place.
+          </Text>
+          <Text className="text-gray-300 mt-8 text-xs font-bold uppercase tracking-[4px]">Select Workspace</Text>
         </Animated.View>
 
-        <View className="gap-5">
+        <View className="flex-row flex-wrap gap-5 justify-center">
           {panels.map((panel, index) => (
             <Animated.View
               key={index}
               entering={FadeInDown.delay(400 + (index * 200)).duration(800)}
+              className="w-full md:w-[30%]"
             >
               <TouchableOpacity
                 activeOpacity={0.9}
                 onPress={() => router.push(panel.route as any)}
-                className={`shadow-lg ${panel.shadow}`}
+                className={`shadow-lg ${panel.shadow} h-full`}
               >
                 <LinearGradient
                   colors={panel.colors as any}
                   start={{ x: 0, y: 0 }}
                   end={{ x: 1, y: 1 }}
-                  className="p-6 rounded-2xl flex-row items-center relative overflow-hidden"
+                  className="p-6 rounded-2xl flex-row items-center relative overflow-hidden h-32 md:h-48 md:flex-col md:items-start md:justify-center"
                 >
                   {/* Subtle noise/texture overlay circle */}
                   <View className="absolute -right-4 -bottom-4 w-24 h-24 bg-white/10 rounded-full blur-xl" />
 
-                  <View className="w-14 h-14 bg-white/20 rounded-xl justify-center items-center backdrop-blur-md border border-white/10">
+                  <View className="w-14 h-14 bg-white/20 rounded-xl justify-center items-center backdrop-blur-md border border-white/10 shrink-0">
                     <Ionicons name={panel.icon as any} size={26} color={panel.iconColor} />
                   </View>
 
-                  <View className="ml-5 flex-1">
+                  <View className="ml-5 flex-1 md:ml-0 md:mt-4">
                     <Text className="text-white text-lg font-bold">{panel.title}</Text>
                     <Text className="text-white/70 text-xs font-medium mt-1 uppercase tracking-wide">{panel.description}</Text>
                   </View>
 
-                  <Ionicons name="chevron-forward" size={24} color="white" className="opacity-80" />
+                  <Ionicons name="chevron-forward" size={24} color="white" className="opacity-80 md:absolute md:right-4 md:top-4" />
                 </LinearGradient>
               </TouchableOpacity>
             </Animated.View>

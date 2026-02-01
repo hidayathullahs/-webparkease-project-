@@ -35,12 +35,12 @@ export default function AdminDashboardScreen() {
                 colors={['#2D3436', '#636E72']} // Slate Gradient
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 0 }}
-                className="pt-16 pb-6 px-6"
+                className="pt-16 pb-6 px-6 md:hidden"
             >
                 <View className="flex-row justify-between items-center mb-6">
                     <View>
-                        <Text className="text-gray-300 font-bold text-[10px] uppercase tracking-widest">Administrator</Text>
-                        <Text className="text-white text-2xl font-black">System Overview</Text>
+                        <Text className="text-gray-300 font-bold text-lg uppercase tracking-widest">Administrator</Text>
+                        <Text className="text-white text-3xl font-black">System Overview</Text>
                     </View>
                     <TouchableOpacity onPress={() => router.back()} className="w-10 h-10 bg-white/10 rounded-full justify-center items-center backdrop-blur-md border border-white/10">
                         <Ionicons name="notifications-outline" size={22} color="white" />
@@ -94,7 +94,7 @@ export default function AdminDashboardScreen() {
                         <Animated.View key={item.id} entering={FadeInRight.delay(index * 150).springify()}>
                             <View className="bg-white p-4 rounded-2xl shadow-sm shadow-gray-100 border border-gray-100 flex-row items-center">
                                 <View className={`w-1 h-10 rounded-full mr-4 ${item.status === 'success' ? 'bg-green-500' :
-                                        item.status === 'warning' ? 'bg-orange-400' : 'bg-blue-400'
+                                    item.status === 'warning' ? 'bg-orange-400' : 'bg-blue-400'
                                     }`} />
                                 <View className="flex-1">
                                     <Text className="text-dark-900 font-bold text-sm">{item.title}</Text>

@@ -39,7 +39,7 @@ export default function ProviderDashboardScreen() {
             colors={['#6C5CE7', '#a29bfe']} // Indigo Gradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
-            className="pt-16 pb-12 px-6 rounded-b-[40px] shadow-xl shadow-indigo-200"
+            className="pt-16 pb-12 px-6 rounded-b-[40px] shadow-xl shadow-indigo-200 md:hidden"
         >
             <View className="flex-row justify-between items-start mb-8">
                 <View>

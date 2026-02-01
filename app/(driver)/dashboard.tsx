@@ -43,7 +43,7 @@ export default function DriverDashboardScreen() {
             colors={['#00B894', '#00cec9']} // Teal Gradient
             start={{ x: 0, y: 0 }}
             end={{ x: 1, y: 1 }}
-            className="pt-14 pb-8 px-6 rounded-b-[35px] shadow-lg shadow-teal-900/10 z-10"
+            className="pt-14 pb-8 px-6 rounded-b-[35px] shadow-lg shadow-teal-900/10 z-10 md:hidden"
         >
             <View className="flex-row justify-between items-center mb-6">
                 <View className="flex-row items-center gap-3">
