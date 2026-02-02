@@ -38,8 +38,22 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
 
     const currentConfig = config[role];
 
+    const showAlert = (title: string, msg: string, buttons?: any) => {
+        if (Platform.OS === 'web') {
+            if (buttons && buttons.length > 0 && buttons[0].text === 'Login') {
+                // Simulate success action
+                window.alert(msg);
+                buttons[0].onPress();
+            } else {
+                window.alert(`${title}: ${msg}`);
+            }
+        } else {
+            Alert.alert(title, msg, buttons);
+        }
+    }
+
     const handleSendOTP = () => {
-        if (!email) return Alert.alert('Error', 'Email is required');
+        if (!email) return showAlert('Error', 'Email is required');
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
@@ -48,7 +62,7 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
     };
 
     const handleVerifyOTP = () => {
-        if (otp !== '1234') return Alert.alert('Error', 'Invalid OTP. Use 1234');
+        if (otp !== '1234') return showAlert('Error', 'Invalid OTP. Use 1234');
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
@@ -57,11 +71,11 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
     };
 
     const handleResetPassword = () => {
-        if (newPassword !== confirmPassword) return Alert.alert('Error', 'Passwords do not match');
+        if (newPassword !== confirmPassword) return showAlert('Error', 'Passwords do not match');
         setIsLoading(true);
         setTimeout(() => {
             setIsLoading(false);
-            Alert.alert('Success', 'Password reset successfully!', [{ text: 'Login', onPress: () => router.back() }]);
+            showAlert('Success', 'Password reset successfully!', [{ text: 'Login', onPress: () => router.back() }]);
         }, 1500);
     };
 
@@ -92,7 +106,7 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
                                         <View className="flex-row items-center">
                                             <Ionicons name="mail-outline" size={20} color="#9CA3AF" className="mr-3" />
                                             <TextInput
-                                                className="flex-1 text-base text-gray-900 font-bold p-0"
+                                                className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                                                 placeholder="name@example.com"
                                                 placeholderTextColor="#9CA3AF"
                                                 value={email}
@@ -120,7 +134,7 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
                                         <View className="flex-row items-center">
                                             <Ionicons name="keypad-outline" size={20} color="#9CA3AF" className="mr-3" />
                                             <TextInput
-                                                className="flex-1 text-base text-gray-900 font-bold p-0 tracking-[5px]"
+                                                className="flex-1 text-base text-gray-900 font-bold p-0 tracking-[5px] outline-none"
                                                 placeholder="0000"
                                                 placeholderTextColor="#9CA3AF"
                                                 value={otp}
@@ -148,7 +162,7 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
                                         <View className="flex-row items-center">
                                             <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" className="mr-3" />
                                             <TextInput
-                                                className="flex-1 text-base text-gray-900 font-bold p-0"
+                                                className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                                                 placeholder="••••••••"
                                                 placeholderTextColor="#9CA3AF"
                                                 value={newPassword}
@@ -162,7 +176,7 @@ export default function UnifiedForgotPassword({ role }: UnifiedForgotPasswordPro
                                         <View className="flex-row items-center">
                                             <Ionicons name="lock-closed-outline" size={20} color="#9CA3AF" className="mr-3" />
                                             <TextInput
-                                                className="flex-1 text-base text-gray-900 font-bold p-0"
+                                                className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                                                 placeholder="••••••••"
                                                 placeholderTextColor="#9CA3AF"
                                                 value={confirmPassword}

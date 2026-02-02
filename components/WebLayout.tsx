@@ -24,6 +24,10 @@ export default function WebLayout({ children }: WebLayoutProps) {
     const roleNavs: Record<string, { label: string; icon: string; route?: string }[]> = {
         '/(admin)': [
             { label: 'Overview', icon: 'stats-chart', route: 'dashboard' },
+            { label: 'Analytics', icon: 'bar-chart', route: 'analytics' },
+            { label: 'Drivers', icon: 'car', route: 'drivers' },
+            { label: 'Providers', icon: 'business', route: 'providers' },
+            { label: 'Disputes', icon: 'warning', route: 'disputes' },
             { label: 'Users', icon: 'people', route: 'users' },
             { label: 'Settings', icon: 'settings', route: 'settings' },
         ],
@@ -31,11 +35,14 @@ export default function WebLayout({ children }: WebLayoutProps) {
             { label: 'Find Spot', icon: 'map', route: 'dashboard' },
             { label: 'My Bookings', icon: 'ticket', route: 'bookings' },
             { label: 'Wallet', icon: 'wallet', route: 'wallet' },
+            { label: 'Profile', icon: 'person', route: 'profile' },
         ],
         '/(provider)': [
             { label: 'My Lot', icon: 'business', route: 'dashboard' },
             { label: 'Earnings', icon: 'cash', route: 'earnings' },
             { label: 'Manage', icon: 'construct', route: 'manage' },
+            { label: 'EV Mgmt', icon: 'flash', route: 'ev' },
+            { label: 'Settings', icon: 'settings', route: 'settings' },
         ]
     };
 
@@ -72,14 +79,23 @@ export default function WebLayout({ children }: WebLayoutProps) {
                 className="bg-white shadow-sm border-b border-gray-100 sticky top-0 z-50"
             >
                 <View className="max-w-[1400px] mx-auto px-6 h-16 flex-row items-center justify-between w-full">
-                    {/* Logo Area */}
-                    <Link href="/" asChild>
-                        <TouchableOpacity className="cursor-pointer">
-                            <Text className="text-2xl font-black text-dark-900 tracking-tighter flex-row items-center">
-                                ParkEase<Text className="text-teal-500">.</Text>
-                            </Text>
-                        </TouchableOpacity>
-                    </Link>
+                    {/* Logo Area with Back Button */}
+                    <View className="flex-row items-center gap-3">
+                        {pathname !== '/' && (
+                            <Link href="/" asChild>
+                                <TouchableOpacity className="w-8 h-8 bg-gray-100 hover:bg-teal-50 rounded-full items-center justify-center transition-colors mr-1" accessibilityLabel="Back to Home">
+                                    <Ionicons name="arrow-back" size={18} color="#374151" />
+                                </TouchableOpacity>
+                            </Link>
+                        )}
+                        <Link href="/" asChild>
+                            <TouchableOpacity className="cursor-pointer">
+                                <Text className="text-2xl font-black text-slate-900 tracking-tighter flex-row items-center">
+                                    ParkEase<Text className="text-teal-500">.</Text>
+                                </Text>
+                            </TouchableOpacity>
+                        </Link>
+                    </View>
 
                     {/* Desktop Navigation */}
                     <View className="hidden md:flex flex-row items-center gap-8">

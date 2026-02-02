@@ -61,17 +61,20 @@ export default function UnifiedRegister({ role }: UnifiedRegisterProps) {
 
     const handleRegister = () => {
         if (!formData.name || !formData.email || !formData.password || !formData.confirmPassword || !formData.phone) {
-            Alert.alert('Incomplete', 'Please fill in required fields');
+            if (Platform.OS === 'web') window.alert('Please fill in required fields');
+            else Alert.alert('Incomplete', 'Please fill in required fields');
             return;
         }
 
         if (formData.password !== formData.confirmPassword) {
-            Alert.alert('Error', 'Passwords do not match');
+            if (Platform.OS === 'web') window.alert('Passwords do not match');
+            else Alert.alert('Error', 'Passwords do not match');
             return;
         }
 
         if (role === 'provider' && !formData.location) {
-            Alert.alert('Incomplete', 'Location is required for providers');
+            if (Platform.OS === 'web') window.alert('Location is required for providers');
+            else Alert.alert('Incomplete', 'Location is required for providers');
             return;
         }
 
@@ -97,7 +100,7 @@ export default function UnifiedRegister({ role }: UnifiedRegisterProps) {
             <View className="flex-row items-center">
                 <Ionicons name={icon} size={20} color="#9CA3AF" className="mr-3" />
                 <TextInput
-                    className="flex-1 text-base text-gray-900 font-bold p-0"
+                    className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                     value={value}
                     onChangeText={(text) => setFormData({ ...formData, [key]: text })}
                     secureTextEntry={isSecure && !showPassState}

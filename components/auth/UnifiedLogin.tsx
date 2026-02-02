@@ -65,7 +65,8 @@ export default function UnifiedLogin({ role }: UnifiedLoginProps) {
 
     const handleLogin = () => {
         if (!email || !password) {
-            Alert.alert('Incomplete', 'Please fill in both email and password.');
+            if (Platform.OS === 'web') window.alert('Please fill in both email and password.');
+            else Alert.alert('Incomplete', 'Please fill in both email and password.');
             return;
         }
         setIsLoading(true);
@@ -112,7 +113,7 @@ export default function UnifiedLogin({ role }: UnifiedLoginProps) {
                             <View className="flex-row items-center">
                                 <Ionicons name="mail" size={20} color="#9CA3AF" className="mr-3" />
                                 <TextInput
-                                    className="flex-1 text-base text-gray-900 font-bold p-0"
+                                    className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                                     placeholder="name@example.com"
                                     placeholderTextColor="#9CA3AF"
                                     value={email}
@@ -128,7 +129,7 @@ export default function UnifiedLogin({ role }: UnifiedLoginProps) {
                             <View className="flex-row items-center">
                                 <Ionicons name="lock-closed" size={20} color="#9CA3AF" className="mr-3" />
                                 <TextInput
-                                    className="flex-1 text-base text-gray-900 font-bold p-0"
+                                    className="flex-1 text-base text-gray-900 font-bold p-0 outline-none"
                                     placeholder="••••••••••••"
                                     placeholderTextColor="#9CA3AF"
                                     value={password}
@@ -171,7 +172,7 @@ export default function UnifiedLogin({ role }: UnifiedLoginProps) {
                         </TouchableOpacity>
 
                         <View className="flex-row justify-center mt-6">
-                            <Text className="text-gray-500 font-medium">Don't have an account? </Text>
+                            <Text className="text-gray-500 font-medium">Don&apos;t have an account? </Text>
                             <TouchableOpacity onPress={() => router.push(currentConfig.registerRoute as any)}>
                                 <Text
                                     style={{ color: currentConfig.themeColor }}
